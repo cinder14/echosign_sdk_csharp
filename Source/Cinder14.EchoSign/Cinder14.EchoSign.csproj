@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9376D87F-613C-49EA-B0F1-A48F4F57F585}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cinder14.EchoSign</RootNamespace>
+    <AssemblyName>Cinder14.EchoSign</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\haven\Source\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\haven\Source\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EchoSignSDK.cs" />
+    <Compile Include="EndpointException\EndpointException.cs" />
+    <Compile Include="EndpointException\EndpointTimeoutException.cs" />
+    <Compile Include="Endpoints\ReminderEndpoint.cs" />
+    <Compile Include="Endpoints\AgreementEndpoint.cs" />
+    <Compile Include="Endpoints\EndpointBase.cs" />
+    <Compile Include="Endpoints\LibraryDocumentEndpoint.cs" />
+    <Compile Include="Endpoints\UserEndpoint.cs" />
+    <Compile Include="Models\Agreements\AgreementCreationInfo.cs" />
+    <Compile Include="Models\Agreements\AgreementCreationResponse.cs" />
+    <Compile Include="Models\Agreements\Alignment.cs" />
+    <Compile Include="Models\Agreements\AnyOrAll.cs" />
+    <Compile Include="Models\Agreements\AuthenticationMethod.cs" />
+    <Compile Include="Models\Agreements\BorderStyle.cs" />
+    <Compile Include="Models\Agreements\ContentType.cs" />
+    <Compile Include="Models\Agreements\DisplayFormatType.cs" />
+    <Compile Include="Models\Agreements\DocumentCreationInfo.cs" />
+    <Compile Include="Models\Agreements\ExternalId.cs" />
+    <Compile Include="Models\Agreements\FieldFormat.cs" />
+    <Compile Include="Models\Agreements\FileInfo.cs" />
+    <Compile Include="Models\Agreements\FileUploadOptions.cs" />
+    <Compile Include="Models\Agreements\FormFieldCondition.cs" />
+    <Compile Include="Models\Agreements\FormFieldLocation.cs" />
+    <Compile Include="Models\Agreements\InputType.cs" />
+    <Compile Include="Models\Agreements\InteractiveOptions.cs" />
+    <Compile Include="Models\Agreements\MergefieldInfo.cs" />
+    <Compile Include="Models\Agreements\PhoneInfo.cs" />
+    <Compile Include="Models\Agreements\PostSignOptions.cs" />
+    <Compile Include="Models\Agreements\RadioCheckType.cs" />
+    <Compile Include="Models\Agreements\RecipientInfo.cs" />
+    <Compile Include="Models\Agreements\RecipientRole.cs" />
+    <Compile Include="Models\Agreements\RecipientSecurityOption.cs" />
+    <Compile Include="Models\Agreements\RecipientSetInfo.cs" />
+    <Compile Include="Models\Agreements\ReminderFrequency.cs" />
+    <Compile Include="Models\Agreements\RequestFormField.cs" />
+    <Compile Include="Models\Agreements\SecurityOptions.cs" />
+    <Compile Include="Models\Agreements\SendThroughWebOptions.cs" />
+    <Compile Include="Models\Agreements\ShowOrHide.cs" />
+    <Compile Include="Models\Agreements\SignatureFlow.cs" />
+    <Compile Include="Models\Agreements\SignatureType.cs" />
+    <Compile Include="Models\Agreements\URLFileInfo.cs" />
+    <Compile Include="Models\Agreements\VaultingInfo.cs" />
+    <Compile Include="Models\LibraryDocuments\DocumentLibraryItem.cs" />
+    <Compile Include="Models\LibraryDocuments\DocumentLibraryItems.cs" />
+    <Compile Include="Models\LibraryDocuments\DocumentLibraryItemScope.cs" />
+    <Compile Include="Models\LibraryDocuments\LibraryTemplateType.cs" />
+    <Compile Include="Models\Reminders\ParticipantEmailInfo.cs" />
+    <Compile Include="Models\Reminders\ParticipantEmailSetInfo.cs" />
+    <Compile Include="Models\Reminders\ReminderCreationInfo.cs" />
+    <Compile Include="Models\Reminders\ReminderCreationResult.cs" />
+    <Compile Include="Models\Users\UserInfo.cs" />
+    <Compile Include="Models\Users\UsersInfo.cs" />
+    <Compile Include="OAuth\AuthorizationInfo.cs" />
+    <Compile Include="OAuth\EchoSignOAuth.cs" />
+    <Compile Include="OAuth\Modifier.cs" />
+    <Compile Include="OAuth\Scope.cs" />
+    <Compile Include="OAuth\TokenInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\NewtonSoftSerializer.cs" />
+    <Compile Include="_ExtensionMethods.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
