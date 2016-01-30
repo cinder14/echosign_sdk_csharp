@@ -1,5 +1,4 @@
 ﻿using Cinder14.EchoSign.Models;
-using Cinder14.EchoSign.Models.Reminders;
 using RestSharp;
 using System.Threading.Tasks;
 

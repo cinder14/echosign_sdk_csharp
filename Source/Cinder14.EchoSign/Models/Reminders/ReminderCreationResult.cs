@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cinder14.EchoSign.Models.Reminders
+namespace Cinder14.EchoSign.Models
 {
     public class ReminderCreationResult
     {

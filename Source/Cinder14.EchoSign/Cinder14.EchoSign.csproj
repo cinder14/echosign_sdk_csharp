@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CallBacks\DocumentEvent.cs" />
+    <Compile Include="CallBacks\DocumentStatus.cs" />
     <Compile Include="EchoSignSDK.cs" />
     <Compile Include="EndpointException\EndpointException.cs" />
     <Compile Include="EndpointException\EndpointTimeoutException.cs" />
@@ -59,13 +61,19 @@
     <Compile Include="Endpoints\UserEndpoint.cs" />
     <Compile Include="Models\Agreements\AgreementCreationInfo.cs" />
     <Compile Include="Models\Agreements\AgreementCreationResponse.cs" />
+    <Compile Include="Models\Agreements\AgreementEventType.cs" />
+    <Compile Include="Models\Agreements\AgreementInfo.cs" />
+    <Compile Include="Models\Agreements\AgreementStatus.cs" />
     <Compile Include="Models\Agreements\Alignment.cs" />
     <Compile Include="Models\Agreements\AnyOrAll.cs" />
     <Compile Include="Models\Agreements\AuthenticationMethod.cs" />
     <Compile Include="Models\Agreements\BorderStyle.cs" />
     <Compile Include="Models\Agreements\ContentType.cs" />
+    <Compile Include="Models\Agreements\DeviceLocation.cs" />
     <Compile Include="Models\Agreements\DisplayFormatType.cs" />
+    <Compile Include="Models\Agreements\DocSecurityOption.cs" />
     <Compile Include="Models\Agreements\DocumentCreationInfo.cs" />
+    <Compile Include="Models\Agreements\DocumentHistoryEvent.cs" />
     <Compile Include="Models\Agreements\ExternalId.cs" />
     <Compile Include="Models\Agreements\FieldFormat.cs" />
     <Compile Include="Models\Agreements\FileInfo.cs" />
@@ -75,6 +83,12 @@
     <Compile Include="Models\Agreements\InputType.cs" />
     <Compile Include="Models\Agreements\InteractiveOptions.cs" />
     <Compile Include="Models\Agreements\MergefieldInfo.cs" />
+    <Compile Include="Models\Agreements\NextParticipantInfo.cs" />
+    <Compile Include="Models\Agreements\NextParticipantSetInfo.cs" />
+    <Compile Include="Models\Agreements\ParticipantInfo.cs" />
+    <Compile Include="Models\Agreements\ParticipantRole.cs" />
+    <Compile Include="Models\Agreements\ParticipantSecurityOption.cs" />
+    <Compile Include="Models\Agreements\ParticipantSetInfo.cs" />
     <Compile Include="Models\Agreements\PhoneInfo.cs" />
     <Compile Include="Models\Agreements\PostSignOptions.cs" />
     <Compile Include="Models\Agreements\RadioCheckType.cs" />
@@ -89,7 +103,11 @@
     <Compile Include="Models\Agreements\ShowOrHide.cs" />
     <Compile Include="Models\Agreements\SignatureFlow.cs" />
     <Compile Include="Models\Agreements\SignatureType.cs" />
+    <Compile Include="Models\Agreements\SigningUrl.cs" />
+    <Compile Include="Models\Agreements\SigningUrlResponse.cs" />
+    <Compile Include="Models\Agreements\SigningUrlSetInfo.cs" />
     <Compile Include="Models\Agreements\URLFileInfo.cs" />
+    <Compile Include="Models\Agreements\UserAgreementStatus.cs" />
     <Compile Include="Models\Agreements\VaultingInfo.cs" />
     <Compile Include="Models\LibraryDocuments\DocumentLibraryItem.cs" />
     <Compile Include="Models\LibraryDocuments\DocumentLibraryItems.cs" />

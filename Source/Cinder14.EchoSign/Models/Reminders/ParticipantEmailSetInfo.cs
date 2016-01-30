@@ -1,4 +1,4 @@
-﻿namespace Cinder14.EchoSign.Models.Reminders
+﻿namespace Cinder14.EchoSign.Models
 {
     public class ParticipantEmailSetInfo
     {
