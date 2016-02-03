@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Cinder14.EchoSign
@@ -86,7 +87,7 @@ namespace Cinder14.EchoSign
         public virtual UserEndpoint Users { get; set; }
 
         public virtual ReminderEndpoint Reminders { get; set; }
-
+        public virtual TransientDocumentEndpoint TransientDocuments { get; set; }
 
         #endregion
 
@@ -112,57 +113,54 @@ namespace Cinder14.EchoSign
 
             this.PrepareRequest(client, request);
 
-            IRestResponse<T> response = client.Execute<T>(request);
+            IRestResponse response = client.Execute(request);
 
             this.ValidateResponse(response);
 
-            return response.Data;
+            string content = response.Content;
+            return JsonConvert.DeserializeObject<T>(content);
         }
 
-        public virtual async Task<IRestResponse> ExecuteAsync(RestRequest request)
+        public virtual Task<IRestResponse> ExecuteAsync(RestRequest request)
         {
-            return await ExecuteAsync(request, this.AsyncTimeoutMillisecond);
+            return ExecuteAsync(request, this.AsyncTimeoutMillisecond);
         }
         public virtual async Task<IRestResponse> ExecuteAsync(RestRequest request, int milliSecondTimeout)
         {
-            return await Task.Factory.StartNew(() =>
+            CancellationTokenSource tokenSource = new CancellationTokenSource();
+            Task<IRestResponse> task = ExecuteAsyncInternal(request);
+            var completedTask = await Task.WhenAny(task, Task.Delay(this.AsyncTimeoutMillisecond, tokenSource.Token));
+            if (completedTask == task)
             {
-                if (milliSecondTimeout <= 0)
-                {
-                    milliSecondTimeout = this.AsyncTimeoutMillisecond;
-                }
-                Task<IRestResponse> task = ExecuteAsyncInternal(request);
-                bool completed = task.Wait(milliSecondTimeout);
-                if (completed)
-                {
-                    return task.Result;
-                }
+                tokenSource.Cancel();
+                return await task;
+            }
+            else
+            {
                 throw new EndpointTimeoutException(System.Net.HttpStatusCode.GatewayTimeout, "Error communicating with server, connection timed out.");
-            });
+            }
         }
 
-        public virtual async Task<T> ExecuteAsync<T>(RestRequest request)
+        public virtual Task<T> ExecuteAsync<T>(RestRequest request)
             where T : new()
         {
-            return await ExecuteAsync<T>(request, this.AsyncTimeoutMillisecond);
+            return ExecuteAsync<T>(request, this.AsyncTimeoutMillisecond);
         }
         public virtual async Task<T> ExecuteAsync<T>(RestRequest request, int milliSecondTimeout)
             where T : new()
         {
-            return await Task.Factory.StartNew(() =>
+            CancellationTokenSource tokenSource = new CancellationTokenSource();
+            Task<T> task = ExecuteAsyncInternal<T>(request);
+            var completedTask = await Task.WhenAny(task, Task.Delay(this.AsyncTimeoutMillisecond, tokenSource.Token));
+            if (completedTask == task)
             {
-                if (milliSecondTimeout <= 0)
-                {
-                    milliSecondTimeout = this.AsyncTimeoutMillisecond;
-                }
-                Task<T> task = ExecuteAsyncInternal<T>(request);
-                bool completed = task.Wait(milliSecondTimeout);
-                if (completed)
-                {
-                    return task.Result;
-                }
+                tokenSource.Cancel();
+                return await task;
+            }
+            else
+            {
                 throw new EndpointTimeoutException(System.Net.HttpStatusCode.GatewayTimeout, "Error communicating with server, connection timed out.");
-            });
+            }
         }
 
         #endregion
@@ -176,6 +174,7 @@ namespace Cinder14.EchoSign
             this.LibraryDocuments = new LibraryDocumentEndpoint(this);
             this.Users = new UserEndpoint(this);
             this.Reminders = new ReminderEndpoint(this);
+            this.TransientDocuments = new TransientDocumentEndpoint(this);
         }
 
         protected virtual void PrepareRequest(RestClient client, RestRequest request)

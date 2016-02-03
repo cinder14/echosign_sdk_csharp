@@ -58,6 +58,7 @@
     <Compile Include="Endpoints\AgreementEndpoint.cs" />
     <Compile Include="Endpoints\EndpointBase.cs" />
     <Compile Include="Endpoints\LibraryDocumentEndpoint.cs" />
+    <Compile Include="Endpoints\TransientDocumentEndpoint.cs" />
     <Compile Include="Endpoints\UserEndpoint.cs" />
     <Compile Include="Models\Agreements\AgreementCreationInfo.cs" />
     <Compile Include="Models\Agreements\AgreementCreationResponse.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Models\Reminders\ParticipantEmailSetInfo.cs" />
     <Compile Include="Models\Reminders\ReminderCreationInfo.cs" />
     <Compile Include="Models\Reminders\ReminderCreationResult.cs" />
+    <Compile Include="Models\TransientDocuments\TransientDocumentResponse.cs" />
     <Compile Include="Models\Users\UserInfo.cs" />
     <Compile Include="Models\Users\UsersInfo.cs" />
     <Compile Include="OAuth\AuthorizationInfo.cs" />

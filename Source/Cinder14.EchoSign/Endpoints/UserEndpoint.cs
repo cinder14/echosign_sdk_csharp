@@ -15,6 +15,17 @@ namespace Cinder14.EchoSign.Endpoints
         /// <summary>
         /// Gets all the users in an account
         /// </summary>
+        public virtual UsersInfo Get(string email)
+        {
+            var request = new RestRequest(Method.GET);
+            request.Resource = "users";
+            request.AddQueryParameter("x-user-email", email);
+            return this.Sdk.Execute<UsersInfo>(request);
+        }
+
+        /// <summary>
+        /// Gets all the users in an account
+        /// </summary>
         public virtual Task<UsersInfo> GetAsync(string email)
         {
             var request = new RestRequest(Method.GET);

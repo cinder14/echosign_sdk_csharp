@@ -11,7 +11,17 @@ namespace Cinder14.EchoSign.Endpoints
         {
 
         }
-
+        /// <summary>
+        /// Sends a reminder for an agreement.
+        /// </summary>
+        public virtual ReminderCreationResult SendReminder(ReminderCreationInfo info)
+        {
+            var request = new RestRequest(Method.POST);
+            request.JsonSerializer = new Serialization.NewtonSoftSerializer();
+            request.Resource = "reminders";
+            request.AddJsonBody(info);
+            return this.Sdk.Execute<ReminderCreationResult>(request);
+        }
         /// <summary>
         /// Sends a reminder for an agreement.
         /// </summary>
