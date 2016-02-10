@@ -128,6 +128,7 @@
     <Compile Include="OAuth\TokenInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\NewtonSoftSerializer.cs" />
+    <Compile Include="Serialization\MockDeserializer.cs" />
     <Compile Include="_ExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>

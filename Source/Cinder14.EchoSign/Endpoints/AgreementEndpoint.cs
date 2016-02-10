@@ -109,6 +109,48 @@ namespace Cinder14.EchoSign.Endpoints
             return this.Sdk.ExecuteAsync<SigningUrlResponse>(request);
         }
 
-        
+        /// <summary>
+        /// Gets a single combined PDF document for the documents associated with an agreement
+        /// </summary>
+        /// <param name="participantEmail">The email address of the participant to be used to retrieve documents.</param>
+        /// <param name="agreementId">The agreement identifier, as provided by POST /agreements or GET /agreements.</param>
+        /// <param name="versionId">The version identifier of agreement as provided by GET /agreements/{agreementId}. If not provided then latest version will be used.</param>
+        /// <param name="attachSupportingDocuments">When set to YES, attach corresponding supporting documents to the signed agreement PDF. Default value of this parameter is true.</param>
+        /// <param name="auditReport">When set to YES, attach an audit report to the signed agreement PDF. Default value is false</param>
+        /// <returns></returns>
+        public virtual byte[] GetCombinedDocument(string agreementId, string versionId = "", string participantEmail = "", bool attachSupportingDocuments = true, bool auditReport = false)
+        {
+            var request = new RestRequest(Method.GET);
+            request.JsonSerializer = new Serialization.NewtonSoftSerializer();
+            request.Resource = "/agreements/{agreementId}/combinedDocument";
+            request.AddUrlSegment("agreementId", agreementId);
+            request.AddParameter("versionId", versionId);
+            request.AddParameter("participantEmail", participantEmail);
+            request.AddParameter("attachSupportingDocuments", attachSupportingDocuments);
+            request.AddParameter("auditReport", auditReport);
+            return this.Sdk.DownloadData(request);
+        }
+
+        /// <summary>
+        /// Gets a single combined PDF document for the documents associated with an agreement
+        /// </summary>
+        /// <param name="participantEmail">The email address of the participant to be used to retrieve documents.</param>
+        /// <param name="agreementId">The agreement identifier, as provided by POST /agreements or GET /agreements.</param>
+        /// <param name="versionId">The version identifier of agreement as provided by GET /agreements/{agreementId}. If not provided then latest version will be used.</param>
+        /// <param name="attachSupportingDocuments">When set to YES, attach corresponding supporting documents to the signed agreement PDF. Default value of this parameter is true.</param>
+        /// <param name="auditReport">When set to YES, attach an audit report to the signed agreement PDF. Default value is false</param>
+        /// <returns></returns>
+        public virtual Task<byte[]> GetCombinedDocumentAsync(string agreementId, string versionId = "", string participantEmail = "", bool attachSupportingDocuments = true, bool auditReport = false)
+        {
+            var request = new RestRequest(Method.GET);
+            request.JsonSerializer = new Serialization.NewtonSoftSerializer();
+            request.Resource = "/agreements/{agreementId}/combinedDocument";
+            request.AddUrlSegment("agreementId", agreementId);
+            request.AddParameter("versionId", versionId);
+            request.AddParameter("participantEmail", participantEmail);
+            request.AddParameter("attachSupportingDocuments", attachSupportingDocuments);
+            request.AddParameter("auditReport", auditReport);
+            return this.Sdk.ExecuteAsync<byte[]>(request);
+        }
     }
 }

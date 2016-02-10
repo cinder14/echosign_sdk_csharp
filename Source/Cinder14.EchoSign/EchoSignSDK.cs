@@ -1,5 +1,6 @@
 ﻿using Cinder14.EchoSign.Endpoints;
 using Cinder14.EchoSign.Exceptions;
+using Cinder14.EchoSign.Serialization;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
@@ -107,18 +108,30 @@ namespace Cinder14.EchoSign
             return response;
         }
         public virtual T Execute<T>(RestRequest request)
-            where T : new()
         {
             RestClient client = new RestClient();
 
             this.PrepareRequest(client, request);
-
+            
             IRestResponse response = client.Execute(request);
 
             this.ValidateResponse(response);
 
             string content = response.Content;
             return JsonConvert.DeserializeObject<T>(content);
+        }
+        public virtual byte[] DownloadData(RestRequest request)
+        {
+            RestClient client = new RestClient();
+
+            client.AddHandler("application/pdf", new MockDeserializer());
+
+            this.PrepareRequest(client, request);
+
+            IRestResponse rest = client.Execute(request);
+            byte[] response = rest.RawBytes;
+
+            return response;
         }
 
         public virtual Task<IRestResponse> ExecuteAsync(RestRequest request)
@@ -142,12 +155,10 @@ namespace Cinder14.EchoSign
         }
 
         public virtual Task<T> ExecuteAsync<T>(RestRequest request)
-            where T : new()
         {
             return ExecuteAsync<T>(request, this.AsyncTimeoutMillisecond);
         }
         public virtual async Task<T> ExecuteAsync<T>(RestRequest request, int milliSecondTimeout)
-            where T : new()
         {
             CancellationTokenSource tokenSource = new CancellationTokenSource();
             Task<T> task = ExecuteAsyncInternal<T>(request);
@@ -200,7 +211,6 @@ namespace Cinder14.EchoSign
             return response;
         }
         protected virtual async Task<T> ExecuteAsyncInternal<T>(RestRequest request)
-            where T : new()
         {
             RestClient client = new RestClient();
 
