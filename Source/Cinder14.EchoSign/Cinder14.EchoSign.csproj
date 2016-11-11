@@ -65,6 +65,8 @@
     <Compile Include="Models\Agreements\AgreementEventType.cs" />
     <Compile Include="Models\Agreements\AgreementInfo.cs" />
     <Compile Include="Models\Agreements\AgreementStatus.cs" />
+    <Compile Include="Models\Agreements\AgreementStatusUpdateInfo.cs" />
+    <Compile Include="Models\Agreements\AgreementStatusUpdateResponse.cs" />
     <Compile Include="Models\Agreements\Alignment.cs" />
     <Compile Include="Models\Agreements\AnyOrAll.cs" />
     <Compile Include="Models\Agreements\AuthenticationMethod.cs" />

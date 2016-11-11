@@ -13,10 +13,17 @@ namespace Cinder14.EchoSign.Exceptions
         {
             this.StatusCode = statusCode;
         }
+        
         public EndpointException(HttpStatusCode statusCode, string message) 
             : base(message)
         {
             this.StatusCode = statusCode;
+        }
+        public EndpointException(HttpStatusCode statusCode, string message, string content)
+            : base(message)
+        {
+            this.StatusCode = statusCode;
+            this.Content = content;
         }
         public EndpointException(HttpStatusCode statusCode, string message, Exception inner)
             : base(message, inner) 
@@ -25,6 +32,7 @@ namespace Cinder14.EchoSign.Exceptions
         }
 
         public HttpStatusCode StatusCode { get; set; }
+        public string Content { get; set; }
         protected EndpointException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context)
