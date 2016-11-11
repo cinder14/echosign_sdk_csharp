@@ -85,6 +85,32 @@ namespace Cinder14.EchoSign.Endpoints
         }
 
         /// <summary>
+        /// Updates an agreement status
+        /// </summary>
+        public virtual AgreementStatusUpdateResponse PutStatus(string agreementId, AgreementStatusUpdateInfo info)
+        {
+            var request = new RestRequest(Method.DELETE);
+            request.JsonSerializer = new Serialization.NewtonSoftSerializer();
+            request.Resource = "agreements/{agreementId}";
+            request.AddUrlSegment("agreementId", agreementId);
+            request.AddJsonBody(info);
+            return this.Sdk.Execute<AgreementStatusUpdateResponse>(request);
+        }
+
+        /// <summary>
+        /// Updates an agreement status
+        /// </summary>
+        public virtual Task<AgreementStatusUpdateResponse> PutStatusAsync(string agreementId, AgreementStatusUpdateInfo info)
+        {
+            var request = new RestRequest(Method.DELETE);
+            request.JsonSerializer = new Serialization.NewtonSoftSerializer();
+            request.Resource = "agreements/{agreementId}";
+            request.AddUrlSegment("agreementId", agreementId);
+            request.AddJsonBody(info);
+            return this.Sdk.ExecuteAsync<AgreementStatusUpdateResponse>(request);
+        }
+
+        /// <summary>
         /// Retrieves the URL for the eSign page for the current signer(s) of an agreement
         /// </summary>
         /// <returns></returns>

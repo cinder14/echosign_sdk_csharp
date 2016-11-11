@@ -35,7 +35,7 @@ namespace Cinder14.EchoSign
             this.ApiUser = apiUser;
             this.ApiEmail = apiEmail;
 
-            if (baseUrl == null)
+            if (baseUrl == null || baseUrl == "")
             {
                 baseUrl = API_BASE_URL;
             }
@@ -266,7 +266,7 @@ namespace Cinder14.EchoSign
                     // do nothing
                     break;
                 default:
-                    throw new EndpointException(response.StatusCode, response.StatusDescription);
+                    throw new EndpointException(response.StatusCode, response.StatusDescription, response.Content);
             }
             if (response.ErrorException != null)
             {
